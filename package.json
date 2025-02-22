@@ -1,0 +1,17 @@
+{
+  "name": "scrap-batch",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "mongodb": "^6.13.1",
+    "tabletojson": "^4.1.5"
+  }
+}
