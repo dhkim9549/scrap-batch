@@ -4,6 +4,7 @@ import "dotenv/config";
 
 let urlApi = "https://finance.naver.com/sise/sise_market_sum.naver";
 let urlApiScr = process.env.API_URL;
+let page2 = "%3F%26page%3D2";
 
 async function main() {
   let jsonTable = "";
@@ -34,8 +35,8 @@ async function main() {
     let eFilter = {};
     let eX = {};
     eX.N = Number(e.N);
-    eX.name = e.종목명;
-    eX.cap = Number(e.시가총액.replaceAll(",", ""));
+    eX.stockNm = e.종목명;
+    eX.stockCap = Number(e.시가총액.replaceAll(",", ""));
     eFilter.N = eX.N;
     console.log("eFlt = " + JSON.stringify(eFilter));
     console.log("eX = " + JSON.stringify(eX));
