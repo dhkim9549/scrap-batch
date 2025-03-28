@@ -9,6 +9,7 @@ let page2 = "%3F%26page%3D2";
 async function main() {
   let jsonTable = "";
   await tabletojson.convertUrl(urlApiScr, function (tablesAsJson) {
+    console.log("tablesAsJson[1] =| " + Object.prototype.toString.call(tablesAsJson[1]));
     console.log(tablesAsJson[1]);
     jsonTable = tablesAsJson[1];
   });
@@ -16,10 +17,14 @@ async function main() {
   let jsonTableCln = JSON.stringify(jsonTable)
     .replaceAll("\\t", "")
     .replaceAll("\\n", "");
-  console.log("jsonTableCln = " + jsonTableCln);
+  console.log(
+    "jsonTableCln =| " + Object.prototype.toString.call(jsonTableCln),
+  );
+  console.log(jsonTableCln);
 
   let table = JSON.parse(jsonTableCln);
-  console.log("table = " + table);
+  console.log("table =| " + Object.prototype.toString.call(table));
+  console.log(table);
 
   const client = new MongoClient(process.env.MONGODB_URI);
   await client.connect();
@@ -31,15 +36,18 @@ async function main() {
     if (Number(e.N) == 0) {
       continue;
     }
-    console.log("e = " + JSON.stringify(e));
+    console.log("e =| " + Object.prototype.toString.call(e));
+    console.log(e);
     let eFilter = {};
     let eX = {};
     eX.N = Number(e.N);
     eX.stockNm = e.종목명;
     eX.stockCap = Number(e.시가총액.replaceAll(",", ""));
     eFilter.N = eX.N;
-    console.log("eFlt = " + JSON.stringify(eFilter));
-    console.log("eX = " + JSON.stringify(eX));
+    console.log("eFlt =| " + Object.prototype.toString.call(eFilter));
+    console.log(eFilter);
+    console.log("eX =| " + Object.prototype.toString.call(eX));
+    console.log(eX);
     await collection.updateOne(eFilter, { $set: eX }, { upsert: true });
   }
 
