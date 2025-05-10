@@ -9,6 +9,7 @@ let page2 = "%3F%26page%3D2";
 async function main() {
   let jsonTable = "";
   await tabletojson.convertUrl(urlApiScr, function (tablesAsJson) {
+    console.log("tablesAsJson => " + Object.prototype.toString.call(tablesAsJson));
     console.log("tablesAsJson[1] => " + Object.prototype.toString.call(tablesAsJson[1]));
     console.log(tablesAsJson[1]);
     jsonTable = tablesAsJson[1];
@@ -43,6 +44,7 @@ async function main() {
     eX.N = Number(e.N);
     eX.stockNm = e.종목명;
     eX.stockCap = Number(e.시가총액.replaceAll(",", ""));
+    eX.PER = Number(e.PER);
     eFilter.N = eX.N;
     console.log("eFlt => " + Object.prototype.toString.call(eFilter));
     console.log(eFilter);
