@@ -4,13 +4,16 @@ import "dotenv/config";
 
 let urlApi = "https://finance.naver.com/sise/sise_market_sum.naver";
 let urlApiScr = process.env.API_URL;
-let page2 = "%3F%26page%3D2";
 
 async function main() {
   let jsonTable = "";
   await tabletojson.convertUrl(urlApiScr, function (tablesAsJson) {
-    console.log("tablesAsJson => " + Object.prototype.toString.call(tablesAsJson));
-    console.log("tablesAsJson[1] => " + Object.prototype.toString.call(tablesAsJson[1]));
+    console.log(
+      "tablesAsJson => " + Object.prototype.toString.call(tablesAsJson),
+    );
+    console.log(
+      "tablesAsJson[1] => " + Object.prototype.toString.call(tablesAsJson[1]),
+    );
     console.log(tablesAsJson[1]);
     jsonTable = tablesAsJson[1];
   });
